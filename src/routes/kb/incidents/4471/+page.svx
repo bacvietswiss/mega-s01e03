@@ -1,8 +1,8 @@
 ---
 layout: runbook
-title: '#4471 · date reports need separate fixes'
+title: '#4471 · parser fixed; booking-v3 retired'
 owner: support desk
-status: split
+status: resolved
 reviewed: 2026-10-28
 ---
 
@@ -15,13 +15,16 @@ reviewed: 2026-10-28
 Since April, people have told us their bookings land on the wrong day: a month flipped. By
 4 October the desk had **412 reports**.
 
-**Originally merged as one issue.** The parser reads dates month first, but booking-v3
-also gives day-first tenants a conflicting form hint. These require separate tickets
-and fixes. See the [signed review and replacement triage decision](/kb/decisions/0002-dedupe-by-cause).
+**Originally merged as one issue.** The parser and booking-v3 hint were separate causes.
+The later engineering update closed #4471 on 5 October: the parser was fixed and the
+hint was marked won't fix because booking-v3 was retired. See the
+[signed resolution page](/kb/incidents/4471-resolution) and
+[replacement triage decision](/kb/decisions/0002-dedupe-by-cause).
 
 <Callout>
-The export records the old merge, not a repaired product. One queued parser fix does not
-resolve the form hint problem, and the one-day anomalies still need investigation.
+The tables below record the historical export. The later engineering update reports
+the parser fixed and the hint retired, not two repaired defects. The one-day anomalies
+remain documented without independent verification of their resolution.
 </Callout>
 
 ## What was merged

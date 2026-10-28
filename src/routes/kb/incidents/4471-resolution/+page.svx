@@ -1,0 +1,80 @@
+---
+layout: runbook
+title: '#4471 · Parser fixed; booking-v3 hint retired'
+owner: bacvietswiss
+status: resolved
+reviewed: 2026-10-28
+signature: 'bacvietswiss / Codex'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## Engineering update: closed 5 October 2026
+
+The [course challenge's engineering update](https://hq.mega.dev/challenges/what-it-shows)
+reports that #4471 closed on 5 October. It gives two different resolutions:
+
+- **Parser: fixed.** The update names `fix(dates): parse dd/mm for eu locales`.
+  [Parser ticket](https://github.com/bacvietswiss/mega-s01e03/issues/1): closed as completed.
+- **Hint: won't fix.** The booking-v3 form was retired; the hint was not repaired.
+  [Hint ticket](https://github.com/bacvietswiss/mega-s01e03/issues/2): closed as not planned.
+
+This update is newer than the 4 October KB export. The engineering panel provides a date,
+not a time or time zone. These are the desk's reported outcomes; the export does not
+contain the product code or deployment evidence needed to independently verify the fix
+or retirement. Do not describe both tickets as fixed.
+
+## Reports covered
+
+The following is the historical export's classification, not current ticket status.
+Its “no ticket of its own” label describes the original merge; both causes now have the
+separate GitHub tickets linked above. Closed tickets still retain their report counts.
+
+<CauseTable ticket={4471} />
+
+The table deduplicates report IDs, filters #4471, joins tenant configuration, and runs
+the supplied classifier. Tenant locale, booking-form version and channel determine the
+group; browser locale and intake tags do not. Counts describe reports, not independent
+incidents or unique customers. Sources: `src/lib/data/reports-4471.json`,
+`src/lib/data/tenants/*.json`, `src/lib/data/desk-notes.json`, and `src/lib/kb/causes.ts`.
+
+<Callout kind="warn">
+The one-day-move footnote remains inside the parser count. The engineering update does
+not explain those individual symptoms. Preserve their evidence; do not infer that all
+were date-order failures or independently verified fixes.
+</Callout>
+
+The desk-note IDs are `R-41202`, `R-41209`, `R-41236`, `R-41344`, and `R-41620`.
+They include adjacent-day differences, a June-only pattern, an invite arriving before
+booking creation, and Lisbon/Toronto displaying different days. Any recurrence needs
+the intended date, event timestamp and offset, tenant/viewer time zones, channel,
+form version and a reproduction before it is assigned to a known cause.
+
+## What the history shows
+
+<QueueTimeline ticket={4471} />
+
+Reports began in April; the July merge spike includes an older backlog. It is not a
+spike of newly received incidents. Incoming reports continue through the export cutoff.
+The chart uses Monday-to-Sunday weeks and each timestamp's recorded calendar date,
+without converting offsets into one time zone. Receipts carry `+01:00` or `+02:00`;
+merge timestamps carry `+02:00`.
+
+## Triage after closure
+
+The [accepted replacement decision](/kb/decisions/0002-dedupe-by-cause) and
+[current triage guide](/kb/triage/dedupe) remain in effect. Preserve the original report
+and check the tenant, channel, form version and symptoms. Merge only confirmed same-cause
+reports. A matching subject does not establish a duplicate, and an unknown cause stays
+separate. Do not merge a new failure into a closed issue without evidence that the cause
+has recurred. Rebuild this page's computed views when the source export changes.
+
+The earlier accepted decisions remain unchanged as history; this incident update records
+the later engineering outcome separately.
+
+<RenderStamp {signature} />

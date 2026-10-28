@@ -5,16 +5,18 @@
     {
       "url": "https://github.com/bacvietswiss/mega-s01e03/issues/1",
       "cause": "parser",
-      "reports": 379
+      "reports": 379,
+      "resolution": "completed: parser fixed"
     },
     {
       "url": "https://github.com/bacvietswiss/mega-s01e03/issues/2",
       "cause": "hint",
-      "reports": 33
+      "reports": 33,
+      "resolution": "not_planned: booking-v3 retired"
     }
   ],
-  "kbSource": "src/routes/kb/decisions/0002-dedupe-by-cause/+page.svx",
-  "renderedHtml": "rendered/kb/decisions/0002-dedupe-by-cause/index.html",
+  "kbSource": "src/routes/kb/incidents/4471-resolution/+page.svx",
+  "renderedHtml": "rendered/kb/incidents/4471-resolution/index.html",
   "renderedText": "evidence/review-rendered.txt",
   "screenshots": [
     "evidence/review-desktop.png",
@@ -23,5 +25,5 @@
   "signature": "bacvietswiss / Codex",
   "deskRef": "DR-20AG-QQH2",
   "build": "Node.js 24+, npm ci, npm run build",
-  "preview": "npm run preview; open /kb/decisions/0002-dedupe-by-cause/"
+  "preview": "npm run preview; open /kb/incidents/4471-resolution/"
 }

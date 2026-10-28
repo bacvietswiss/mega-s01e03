@@ -1,0 +1,24 @@
+import{a,f,t as m}from"./Xzn9zRMf.js";import{R as g}from"./CmYPthY9.js";import{q as e,g as b,a1 as v}from"./BhFtvWva.js";import{l as w,s as k}from"./nP-srWEI.js";import{C as y,Q as T}from"./sTsNa_pf.js";import{C as _}from"./aAuaARWN.js";import{R as x}from"./CAogOLuT.js";const t={layout:"runbook",title:"#4471 · Parser fixed; booking-v3 hint retired",owner:"bacvietswiss",status:"resolved",reviewed:"2026-10-28T00:00:00.000Z",signature:"bacvietswiss / Codex"},{layout:H,title:M,owner:J,status:Q,reviewed:B,signature:$}=t;var R=f(`<h2>Engineering update: closed 5 October 2026</h2> <p>The <a href="https://hq.mega.dev/challenges/what-it-shows" rel="nofollow">course challenge’s engineering update</a> reports that #4471 closed on 5 October. It gives two different resolutions:</p> <ul><li><strong>Parser: fixed.</strong> The update names <code>fix(dates): parse dd/mm for eu locales</code>. <a href="https://github.com/bacvietswiss/mega-s01e03/issues/1" rel="nofollow">Parser ticket</a>: closed as completed.</li> <li><strong>Hint: won’t fix.</strong> The booking-v3 form was retired; the hint was not repaired. <a href="https://github.com/bacvietswiss/mega-s01e03/issues/2" rel="nofollow">Hint ticket</a>: closed as not planned.</li></ul> <p>This update is newer than the 4 October KB export. The engineering panel provides a date,
+not a time or time zone. These are the desk’s reported outcomes; the export does not
+contain the product code or deployment evidence needed to independently verify the fix
+or retirement. Do not describe both tickets as fixed.</p> <h2>Reports covered</h2> <p>The following is the historical export’s classification, not current ticket status.
+Its “no ticket of its own” label describes the original merge; both causes now have the
+separate GitHub tickets linked above. Closed tickets still retain their report counts.</p> <!> <p>The table deduplicates report IDs, filters #4471, joins tenant configuration, and runs
+the supplied classifier. Tenant locale, booking-form version and channel determine the
+group; browser locale and intake tags do not. Counts describe reports, not independent
+incidents or unique customers. Sources: <code>src/lib/data/reports-4471.json</code>, <code>src/lib/data/tenants/*.json</code>, <code>src/lib/data/desk-notes.json</code>, and <code>src/lib/kb/causes.ts</code>.</p> <!> <p>The desk-note IDs are <code>R-41202</code>, <code>R-41209</code>, <code>R-41236</code>, <code>R-41344</code>, and <code>R-41620</code>.
+They include adjacent-day differences, a June-only pattern, an invite arriving before
+booking creation, and Lisbon/Toronto displaying different days. Any recurrence needs
+the intended date, event timestamp and offset, tenant/viewer time zones, channel,
+form version and a reproduction before it is assigned to a known cause.</p> <h2>What the history shows</h2> <!> <p>Reports began in April; the July merge spike includes an older backlog. It is not a
+spike of newly received incidents. Incoming reports continue through the export cutoff.
+The chart uses Monday-to-Sunday weeks and each timestamp’s recorded calendar date,
+without converting offsets into one time zone. Receipts carry <code>+01:00</code> or <code>+02:00</code>;
+merge timestamps carry <code>+02:00</code>.</p> <h2>Triage after closure</h2> <p>The <a href="/kb/decisions/0002-dedupe-by-cause">accepted replacement decision</a> and <a href="/kb/triage/dedupe">current triage guide</a> remain in effect. Preserve the original report
+and check the tenant, channel, form version and symptoms. Merge only confirmed same-cause
+reports. A matching subject does not establish a duplicate, and an unknown cause stays
+separate. Do not merge a new failure into a closed issue without evidence that the cause
+has recurred. Rebuild this page’s computed views when the source export changes.</p> <p>The earlier accepted decisions remain unchanged as history; this incident update records
+the later engineering outcome separately.</p> <!>`,1);function j(i,d){const c=w(d,["children","$$slots","$$events","$$legacy"]);g(i,k(()=>c,()=>t,{children:(l,P)=>{var o=R(),s=e(b(o),12);y(s,{ticket:4471});var n=e(s,4);_(n,{kind:"warn",children:(h,C)=>{v();var u=m(`The one-day-move footnote remains inside the parser count. The engineering update does
+not explain those individual symptoms. Preserve their evidence; do not infer that all
+were date-order failures or independently verified fixes.`);a(h,u)},$$slots:{default:!0}});var r=e(n,6);T(r,{ticket:4471});var p=e(r,10);x(p,{get signature(){return $}}),a(l,o)},$$slots:{default:!0}}))}const E=Object.freeze(Object.defineProperty({__proto__:null,default:j,metadata:t},Symbol.toStringTag,{value:"Module"}));export{E as _,j as a};

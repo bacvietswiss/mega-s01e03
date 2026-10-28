@@ -25,12 +25,15 @@ assert.equal(sameCause({ channel: 'form' }, alder, { channel: 'app' }, alder), f
 assert.equal(sameCause({ channel: 'app' }, alder, { channel: 'email' }, alder), true);
 assert.equal(sameCause({ channel: 'app' }, undefined, { channel: 'app' }, undefined), false);
 
-const html = readFileSync(new URL('./rendered/kb/decisions/0002-dedupe-by-cause/index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('./rendered/kb/incidents/4471-resolution/index.html', import.meta.url), 'utf8');
 const text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
 assert.match(text, /412 reports merged into #4471/);
 assert.match(text, /parser\s+379/);
 assert.match(text, /hint\s+33/);
 assert.match(text, /5 reports read as a one-day move/);
+assert.match(text, /Parser: fixed/);
+assert.match(text, /Hint: won.?t fix/);
+assert.match(text, /closed as not planned/);
 assert.ok(text.includes(deskRef('bacvietswiss / Codex')));
 assert.ok(!text.includes("no desk ref: this page isn't signed"));
 console.log('Verified report counts, duplicate consistency, anomalies, triage examples, and rendered signature.');

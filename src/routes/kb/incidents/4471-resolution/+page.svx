@@ -4,7 +4,7 @@ title: '#4471 · Parser fixed; booking-v3 hint retired'
 owner: bacvietswiss
 status: resolved
 reviewed: 2026-10-28
-signature: 'bacvietswiss / Codex'
+signature: 'v1.eyJzdWIiOiIyMDA5IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMjI5MDIsImV4cCI6MTc5MzMwOTMwMn0.Hjh3RrK2tTOPnACIVGRGhURStaheUSvqw8OsNCJIy00'
 ---
 
 <script>

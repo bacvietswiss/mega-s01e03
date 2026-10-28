@@ -22,8 +22,8 @@
     "evidence/review-desktop.png",
     "evidence/review-mobile.png"
   ],
-  "signature": "bacvietswiss / Codex",
-  "deskRef": "DR-20AG-QQH2",
+  "deskRef": "DR-T9MF-Y7N2",
   "build": "Node.js 24+, npm ci, npm run build",
-  "preview": "npm run preview; open /kb/incidents/4471-resolution/"
+  "preview": "npm run preview; open /kb/incidents/4471-resolution/",
+  "signatureSource": "kbSource frontmatter"
 }

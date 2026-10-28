@@ -1,0 +1,38 @@
+---
+layout: runbook
+title: 'Triage: duplicate reports'
+owner: support desk
+status: accepted
+reviewed: 2026-10-28
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+A busy morning brings hundreds of reports about the same thing. We keep one ticket per issue
+and merge every duplicate into it, so engineering sees one thread with a count.
+
+## The rule
+
+A report is a duplicate when the evidence supports the **same cause** as an open ticket
+([decision 0002](/kb/decisions/0002-dedupe-by-cause), replacing decision 0001):
+
+1. preserve its ID, body, receipt time, and merge history;
+2. look up the tenant's locale and booking form, then inspect the channel and symptoms;
+3. merge only into a ticket with a confirmed matching cause; otherwise keep it separate.
+
+<Callout>
+Subject lines help find candidates. They do not prove that two reports have the same cause.
+Keep the parser and booking-v3 hint problems in separate tickets.
+</Callout>
+
+## Try it
+
+<DedupeExplorer />
+
+## When you are unsure
+
+Keep the report separate and investigate. Unknown tenants and one-day anomalies need
+more evidence; do not silently absorb them into a known issue.

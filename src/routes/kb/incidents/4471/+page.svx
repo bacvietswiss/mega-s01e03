@@ -1,0 +1,39 @@
+---
+layout: runbook
+title: '#4471 · date reports need separate fixes'
+owner: support desk
+status: split
+reviewed: 2026-10-28
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+Since April, people have told us their bookings land on the wrong day: a month flipped. By
+4 October the desk had **412 reports**.
+
+**Originally merged as one issue.** The parser reads dates month first, but booking-v3
+also gives day-first tenants a conflicting form hint. These require separate tickets
+and fixes. See the [signed review and replacement triage decision](/kb/decisions/0002-dedupe-by-cause).
+
+<Callout>
+The export records the old merge, not a repaired product. One queued parser fix does not
+resolve the form hint problem, and the one-day anomalies still need investigation.
+</Callout>
+
+## What was merged
+
+<CauseTable ticket={4471} />
+
+## Since April
+
+<QueueTimeline ticket={4471} />
+
+## Lessons
+
+- Deduplicate export rows by report ID, then group by tenant context and cause.
+- Preserve separate problems and uncertainty even when subject lines match.
+- Rebuild the tables when new evidence arrives and verify each fix before closing tickets.

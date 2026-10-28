@@ -1,0 +1,115 @@
+---
+layout: runbook
+title: '0002 · Split #4471 and deduplicate by cause'
+owner: bacvietswiss
+status: accepted
+reviewed: 2026-10-28
+signature: 'bacvietswiss / Codex'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## Decision
+
+Replace [decision 0001](/kb/decisions/0001-dedupe-by-subject) for new triage.
+Keep that accepted record unchanged as history. Merge reports only when the evidence
+supports the same cause. A matching subject is a search aid, not a cause.
+If the cause is unknown, keep the report separate for investigation.
+
+## What #4471 contains
+
+The exported incident calls this one known parser issue with one fix queued.
+The table below runs the supplied classifier against the exported reports and tenant
+directory. It shows two causes; fixing the parser alone leaves the form hint problem.
+These are report counts, not unique customers or independent incidents.
+
+<CauseTable ticket={4471} />
+
+### Parser: day and month are read in the wrong order
+
+The shared parser reads dates month first for tenants whose locale writes the day first.
+App and email reports, plus booking-v2 form reports for these tenants, belong here.
+The original ticket belongs to this majority cause:
+[parser ticket](https://github.com/bacvietswiss/mega-s01e03/issues/1).
+
+Example: `R-41203` reports **2 December → 12 February**. The correction in
+`R-41201` follows `R-41200`; they remain separate report IDs, not proof of two incidents.
+The fix should parse in the tenant's intended date order and preserve the selected date
+through the invite. Verify ambiguous dates and dates whose day exceeds twelve.
+
+### Hint: booking-v3 tells day-first tenants to type month first
+
+The booking-v3 form displays `MM/DD/YYYY`, while that form reads the input in the tenant's
+day-first order. This affects form reports from `alder.physio`, `copper.studio`, and
+`pale.harbour`. It needs a separate ticket and a hint aligned with the form's reader.
+
+Example: `R-41230`, `copper.studio`, channel `form`, reports **6 January → 1 June**.
+Intake tagged it `parser`; the tenant's `es-ES` locale and `booking-v3` form put it in
+the hint group. Track the fix in the
+[form-hint ticket](https://github.com/bacvietswiss/mega-s01e03/issues/2).
+Verify that the example, hint, accepted input, and saved date agree.
+
+<Callout kind="warn">
+The one-day-move footnote is included in the parser total, not an extra group to add or
+subtract. Those reports do not establish a third root cause. Investigate them separately
+within the parser ticket rather than claiming that a date-order fix resolves them.
+</Callout>
+
+The desk's notes name `R-41202`, `R-41209`, `R-41236`, `R-41344`, and `R-41620`.
+Their bodies differ: adjacent-day shifts, a June-only pattern, an invite arriving before
+booking creation, and Lisbon/Toronto displaying different days. Collect the intended
+date, event timestamp, original offset, tenant and viewer time zones, form version,
+and reproduction before attributing these symptoms to parsing or a time-zone defect.
+
+## How the counts are obtained
+
+`reports-4471.json` is a paginated export with overlapping rows. `uniqueById` counts each
+ID once, then the page filters `mergedInto === 4471`. `tenantOf` joins the tenant directory;
+`causeOf` uses the tenant's locale, form version, and report channel. `groupByCause`
+computes the table. Browser locale and `meta.intakeTag` are intake guesses, not the grouping key.
+An unknown tenant or unsupported locale stays unplaced; do not force a match.
+
+Sources: `src/lib/data/reports-4471.json`, `src/lib/data/tenants/*.json`,
+`src/lib/data/desk-notes.json`, `src/lib/kb/causes.ts`, and `src/lib/kb/locales.ts`.
+This review uses the **4 October 2026 export**, not a live production system.
+The classifier is the desk's model; this export does not prove historical form execution
+or reproduce the underlying product defects.
+
+## Received is not merged
+
+<QueueTimeline ticket={4471} />
+
+Reports start in April; merging starts on 2 July. The large July merge bar includes an
+older backlog and must not be described as a surge of new incidents. Incoming reports
+continue after the ticket is marked known, through the export cutoff. "Known" does not
+mean fixed, and the last reporter says they stopped reporting these failures.
+
+The chart uses Monday-to-Sunday weeks and the calendar date written in each timestamp.
+It does not convert times into one time zone. Source receipts carry `+01:00` or `+02:00`;
+merge timestamps carry `+02:00`. An offset alone does not identify an IANA time zone.
+
+## Triage while the desk keeps working
+
+1. Preserve the original report ID, body, receipt time, and merge history.
+2. Look up the tenant's locale and booking form, then inspect the channel and symptoms.
+3. Route parser and hint reports to separate tickets. Keep one-day anomalies visible.
+4. Merge only confirmed same-cause reports. A different subject may describe the same
+   cause; the same subject may describe different causes. Unknowns stay separate.
+5. Recompute counts from unique IDs whenever the export changes, then review the page
+   and linked tickets together. Fixes need reproduction and verification before closure.
+
+<DedupeExplorer />
+
+## Consequences
+
+Triage requires reading and a tenant lookup. In return, a larger ticket cannot hide a
+second problem behind one queued fix. The original accepted decision remains available,
+while the current triage guide and incident page point to this replacement.
+
+<RenderStamp {signature} />

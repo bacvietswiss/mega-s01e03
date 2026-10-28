@@ -1,0 +1,27 @@
+{
+  "repository": "https://github.com/bacvietswiss/mega-s01e03",
+  "sourceExport": "kb-export-267efc5e.zip, exported 2026-10-04",
+  "issues": [
+    {
+      "url": "https://github.com/bacvietswiss/mega-s01e03/issues/1",
+      "cause": "parser",
+      "reports": 379
+    },
+    {
+      "url": "https://github.com/bacvietswiss/mega-s01e03/issues/2",
+      "cause": "hint",
+      "reports": 33
+    }
+  ],
+  "kbSource": "src/routes/kb/decisions/0002-dedupe-by-cause/+page.svx",
+  "renderedHtml": "rendered/kb/decisions/0002-dedupe-by-cause/index.html",
+  "renderedText": "evidence/review-rendered.txt",
+  "screenshots": [
+    "evidence/review-desktop.png",
+    "evidence/review-mobile.png"
+  ],
+  "signature": "bacvietswiss / Codex",
+  "deskRef": "DR-20AG-QQH2",
+  "build": "Node.js 24+, npm ci, npm run build",
+  "preview": "npm run preview; open /kb/decisions/0002-dedupe-by-cause/"
+}
